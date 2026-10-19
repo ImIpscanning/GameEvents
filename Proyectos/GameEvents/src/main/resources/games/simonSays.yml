@@ -1,0 +1,38 @@
+fancy_name: "&#90d3d6S&#7ed8bei&#6cdea6m&#5ae38eo&#48e876n &#36ed5es&#24f346a&#12f82ey&#00fd16s "
+enabled: false
+warmup: 10
+min_players: 5
+max_players: 15
+
+order_prefix: "&bSimon says: "
+fake_order_prefixes:
+  - "&bSimon tells: "
+  - "&bSimon orders: "
+  - ""
+
+base_timer: 10
+rounds_to_mid_game: 10
+
+rounds_to_late_game: 20
+late_game_timer: 15
+
+max_rounds: 50
+valid_orders:
+  - JUMP
+  - SNEAK
+  - CLICK_PLAYER
+  - CRAFT_ITEM
+  - RIGHT_CLICK_BLOCK
+
+messages:
+  JUMP: "&aJump!"
+  SNEAK: "&aSneak!"
+  CLICK_PLAYER: "&aRight click &2%player%&a!"
+  CRAFT_ITEM: "&aCraft the item!"
+  RIGHT_CLICK_BLOCK: "&aFind and click: %item%"
+
+craft_items:
+  - NONE
+
+right_click_blocks:
+  - NONE

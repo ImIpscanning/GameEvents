@@ -1,0 +1,16 @@
+debug: false
+
+# Time between games are started in seconds
+# It's recommended to have at least 10-15 mins
+# between games.
+game_rotation_time: 600
+
+# Time (seconds) before game is stopped if not enough
+# player joins. You can also set to -1 to disable
+# but this could lead to never starting/ending games
+game_max_wait_time: 90
+
+
+location_wand_name: "&5Location wand"
+
+remote_control_name: "&dRemote Control"

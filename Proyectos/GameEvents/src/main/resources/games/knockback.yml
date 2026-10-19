@@ -1,0 +1,17 @@
+fancy_name: "&#d67f43K&#db8a53n&#e09563o&#e5a072c&#eaab82k&#eeb592b&#f3c0a2a&#f8cbb1c&#fdd6c1k"
+enabled: false
+warmup: 10
+min_players: 5
+max_players: 20
+spawn_zone:
+  corner1: empty
+  corner2: empty
+
+deathSound: ENTITY_LIGHTNING_BOLT_IMPACT
+killSound: BLOCK_NOTE_BLOCK_HARP
+
+knockItem: NONE
+
+deathZone:
+  corner1: empty
+  corner2: empty

@@ -1,0 +1,124 @@
+package lifehard.ds;
+
+import net.milkbowl.vault.economy.Economy;
+import org.black_ixx.playerpoints.PlayerPoints;
+import org.black_ixx.playerpoints.PlayerPointsAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.command.*;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.java.JavaPlugin;
+import java.util.*;
+
+public class LifeHard extends JavaPlugin implements Listener, CommandExecutor, TabCompleter {
+    
+    private ItemStack heartItem;
+    private Economy economy;
+    private PlayerPointsAPI playerPoints;
+    private String economyType = "vault";
+    private final int MAX_HEALTH = 60;
+    private final Map<UUID, Double> playerHearts = new HashMap<>();
+
+    @Override
+    public void onEnable() {
+        Bukkit.getPluginManager().registerEvents(this, this);
+        this.getCommand("lh").setExecutor(this);
+        this.getCommand("lh").setTabCompleter(this);
+        getLogger().info("LifeHard Plugin activado!");
+        saveDefaultConfig();
+        setupEconomy();
+        cargarItemCorazon();
+    }
+
+    @Override
+    public void onDisable() {
+        getLogger().info("LifeHard Plugin desactivado!");
+    }
+
+    private void setupEconomy() {
+        if (Bukkit.getPluginManager().isPluginEnabled("PlayerPoints")) {
+            playerPoints = PlayerPoints.getInstance().getAPI();
+            economyType = "playerpoints";
+            getLogger().info("Usando PlayerPoints como economía.");
+        } else {
+            RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+            if (rsp != null) {
+                economy = rsp.getProvider();
+                economyType = "vault";
+                getLogger().info("Usando Vault como economía.");
+            }
+        }
+    }
+
+    private void cargarItemCorazon() {
+        heartItem = new ItemStack(Material.NETHER_STAR);
+        ItemMeta meta = heartItem.getItemMeta();
+        meta.setDisplayName("§cCorazón de Vida");
+        heartItem.setItemMeta(meta);
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("Este comando solo puede ser ejecutado por jugadores.");
+            return true;
+        }
+        Player player = (Player) sender;
+
+        if (args.length == 0) {
+            player.sendMessage("§aUso: /lh add <item/jugador> <jugador> <cantidad>");
+            return true;
+        }
+        
+        if (args[0].equalsIgnoreCase("add")) {
+            if (args.length < 3) {
+                player.sendMessage("§cUso incorrecto. /lh add <item/jugador> <jugador> <cantidad>");
+                return true;
+            }
+            
+            Player target = Bukkit.getPlayer(args[1]);
+            if (target == null) {
+                player.sendMessage("§cEse jugador no está conectado.");
+                return true;
+            }
+            
+            int cantidad;
+            try {
+                cantidad = Integer.parseInt(args[2]);
+            } catch (NumberFormatException e) {
+                player.sendMessage("§cLa cantidad debe ser un número válido.");
+                return true;
+            }
+            
+            if (args[0].equalsIgnoreCase("item")) {
+                ItemStack corazones = new ItemStack(heartItem);
+                corazones.setAmount(cantidad);
+                target.getInventory().addItem(corazones);
+                player.sendMessage("§aLe diste " + cantidad + " corazones a " + target.getName());
+            } else {
+                double nuevaVida = Math.min(target.getHealth() + (cantidad * 2), MAX_HEALTH);
+                target.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(nuevaVida);
+                player.sendMessage("§aLe diste " + cantidad + " corazones extra a " + target.getName());
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        List<String> completions = new ArrayList<>();
+        if (args.length == 1) {
+            completions.add("add");
+        } else if (args.length == 2 && args[0].equalsIgnoreCase("add")) {
+            completions.add("item");
+            completions.add("jugador");
+        }
+        return completions;
+    }
+}

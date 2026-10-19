@@ -1,0 +1,19 @@
+
+rewards:
+  play_reward:
+    type: PLAY
+    actions:
+      - "message: &eYou played"
+  play_reward_permission:
+    type: PLAY
+    permission: gameevent.hola
+    actions:
+      - "message: &eYou played, and have the permission"
+  win_reward:
+    type: WIN
+    actions:
+      - "message: &aYou won"
+  lose_reward:
+    type: LOSE
+    actions:
+      - "message: &cYou lost"

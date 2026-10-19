@@ -1,0 +1,7 @@
+name: GameEvent
+version: '${project.version}'
+main: jaime.ge.gameEvent.GameEvents
+api-version: '1.21'
+authors: [DianelitoStudios, Jaime]
+softdepend:
+  - Multiverse-Core
