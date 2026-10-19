@@ -1,0 +1,37 @@
+---
+icon: block
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
+# TNT Tag
+
+```yaml
+fancy_name: "&cTNT TAG"
+enabled: false
+warmup: 10
+min_players: 5
+max_players: 20
+
+explode_random_time: true
+fastest_explode_time: 10
+slowest_explode_time: 15
+
+tnt_head_item: none
+
+tagged_sound: BLOCK_NOTE_BLOCK_GUITAR
+explosion_sound: ENTITY_GENERIC_EXPLODE
+
+spawn_zone:
+  corner1: empty
+  corner2: empty
+```

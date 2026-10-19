@@ -1,0 +1,40 @@
+---
+icon: raygun
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
+# Gun Game
+
+```yaml
+fancy_name: "&#32D640Gun &#FD6393Game "
+enabled: false
+warmup: 10
+min_players: 5
+max_players: 20
+spawn_zone:
+  corner1: empty
+  corner2: empty
+
+levels:
+  1: empty
+
+killSound: BLOCK_NOTE_BLOCK_BANJO
+deathSound: ENTITY_GENERIC_HURT
+respawnLocations:
+  location1: none
+
+
+
+
+
+```

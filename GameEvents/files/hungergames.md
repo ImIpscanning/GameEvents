@@ -1,0 +1,38 @@
+---
+icon: swords
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
+# Hunger Games
+
+```yaml
+fancy_name: '&#ff6161H&#ff6f60u&#ff7d5fn&#fe8a5fg&#fe985ee&#fea65dr &#feb45cg&#fec25ba&#fdcf5bm&#fddd5ae&#fdeb59s '
+enabled: false
+warmup: 10
+min_players: 5
+
+eliminationSound: ENTITY_LIGHTNING_BOLT_IMPACT
+loadouts:
+  '1': empty
+
+spawnLocations:
+  location1: none
+  location2: none
+
+gameZone:
+  corner1: empty
+  corner2: empty
+max_players: 2
+
+
+```
